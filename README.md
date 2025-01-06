@@ -6,10 +6,10 @@
 
 <div align="center">
   <b>ARR-STACK 4 Dummies</b> - a beginner driven docker compose configuration designed to deploy a set of popular media management tools.
-  This project is intended to provide an a fun, easy to undersatand baseline for newcommers to selfhost their own media server .
+  This project is intended to provide an a fun, easy to understand baseline for newcommers to self-host their own media server.
   <br />
   <br />
-  <a href="https://github.com/jtmb/retropie/issues/new?assignees=&labels=bug&title=bug%3A+">Report a Bug</a>
+  <a href="https://github.com/jtmb/arr-stack-4-dummies/issues/new?assignees=&labels=bug&title=bug%3A+">Report a Bug</a>
 </div>
 
 <br>

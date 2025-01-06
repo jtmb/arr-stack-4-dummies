@@ -2,19 +2,20 @@
 services:
   plex:
     image: lscr.io/linuxserver/plex:latest
-    network_mode: "host"
+    #network_mode: "host"
     devices:
       - /dev/dri:/dev/dri
     container_name: plex
     volumes:
       - ${VOLUME_PATH}/plex-config:/config
+      - /mnt/o/movies:/data/bigboo
       - ${MEDIA_VOLUME_PATH}/media:/data
     environment:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
-      - PLEX_CLAIM=your-token-here #https://www.plex.tv/claim/
-      - ADVERTISE_IP=http://10.0.0.107:32401/
+      - PLEX_CLAIM=claim-nABCQiuD8zyN3MQ3WCQ2 #https://www.plex.tv/claim/
+     #- ADVERTISE_IP=http://10.0.0.107:32401/
     ports:
       - 32400:32400
     restart: unless-stopped
@@ -25,7 +26,7 @@ services:
     ports:
       - "5055:5055"
     volumes:
-      - ${VOLUME_PATH}/overseerr-config:/app/config
+      - ${VOLUME_PATH}/overseerr-config:/config
     environment:
       - LOG_LEVEL=info
     restart: unless-stopped
@@ -110,10 +111,13 @@ services:
       - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER}
       - OPENVPN_USER=${OPENVPN_USER}
       - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
-      - SERVER_REGIONS=${SERVER_REGIONS}
+      - PORT_FORWARD_ONLY=${PORT_FORWARD_ONLY}
+      - VPN_PORT_FORWARDING=${VPN_PORT_FORWARDING}
+      - VPN_PORT_FORWARDING_PROVIDER=${VPN_PORT_FORWARDING_PROVIDER}
       - VPN_TYPE=${VPN_TYPE}
     volumes:
       - ${VOLUME_PATH}/gluetun/tmp:/tmp/gluetun
+    restart: unless-stopped
 
   qbittorrent:
     container_name: qbittorrent
